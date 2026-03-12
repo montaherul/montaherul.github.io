@@ -52,12 +52,13 @@ function initTerminalIntro() {
     return;
   }
 
-  const lines = [
-    "> boot --profile montaherul",
-    "Loading interface modules...",
-    "Fetching GitHub projects...",
-    "Portfolio ready. Scroll to explore.",
-  ];
+const lines = [
+  "> Booting system...",
+  "> Loading portfolio modules...",
+  "> Establishing connection...",
+  "> Access granted.",
+  "> Welcome, explore the portfolio below.",
+];
 
   let lineIndex = 0;
   let charIndex = 0;
@@ -196,10 +197,10 @@ function initTypingEffect() {
   }
 
   const words = [
-    "Frontend developer",
+    "Full-Stack developer",
     "Cybersecurity learner",
     "AI tools explorer",
-    "Responsive UI builder",
+    "UI/UX design builder",
   ];
 
   let wordIndex = 0;
