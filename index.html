@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Montaherul Islam | Frontend Portfolio</title>
+  <meta name="description"
+    content="Portfolio of Montaherul Islam featuring frontend projects, GitHub work, and practical web development skills.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@400;500;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <div id="preloader" class="preloader" aria-hidden="true">
+    <div class="preloader__core">
+      <span class="preloader__ring preloader__ring--one"></span>
+      <span class="preloader__ring preloader__ring--two"></span>
+      <span class="preloader__ring preloader__ring--three"></span>
+    </div>
+    <p class="preloader__label">Loading portfolio</p>
+  </div>
+
+  <div id="terminal-intro" class="terminal-intro" aria-hidden="true">
+    <div class="terminal-window">
+      <div class="terminal-window__bar">
+        <div class="terminal-window__lights">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <button id="skip-intro" type="button" class="terminal-window__skip">
+          Skip intro
+        </button>
+      </div>
+      <pre><code id="terminal-text"></code></pre>
+    </div>
+  </div>
+
+  <div id="cursor-glow" class="cursor-glow" aria-hidden="true"></div>
+  <canvas id="particle-canvas" class="particle-canvas" aria-hidden="true"></canvas>
+  <div id="code-background" class="code-background" aria-hidden="true"></div>
+
+  <header id="site-header" class="site-header">
+    <div class="container nav-shell">
+      <a class="brand" href="#home" aria-label="Go to home section">
+        <span class="brand__mark">MI</span>
+        <span class="brand__copy">
+          <strong>Montaherul Islam</strong>
+          <small>Full Stack web development and secure UI work</small>
+        </span>
+      </a>
+
+      <button id="nav-toggle" class="nav-toggle" type="button" aria-controls="site-nav" aria-expanded="false"
+        aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav id="site-nav" class="site-nav">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#github">GitHub</a>
+        <a href="#contact" class="site-nav__cta">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="home" class="hero section">
+      <div class="container hero-grid">
+        <div class="hero-copy" data-reveal="left">
+          <p class="eyebrow">Portfolio</p>
+          <h1>
+            Full Stack web development  built with clarity, motion, and purpose.
+          </h1>
+          <p class="hero-copy__lead">
+            I'm Montaherul Islam, a Computer Science student in Chattogram
+            focused on frontend development, cybersecurity, and practical AI
+            tools.
+          </p>
+          <p class="hero-copy__typing">
+            Current focus:
+            <span id="typed-text">Frontend developer</span>
+          </p>
+          <div class="hero-actions">
+            <a class="button button--primary" href="#projects">View projects</a>
+            <a class="button button--secondary" href="#contact">Contact me</a>
+          </div>
+          <div class="hero-metrics">
+            <article class="metric-card">
+              <span id="repo-count" class="metric-card__value">00</span>
+              <small>Public repos</small>
+            </article>
+            <article class="metric-card">
+              <span id="language-count" class="metric-card__value">00</span>
+              <small>GitHub languages</small>
+            </article>
+            <article class="metric-card">
+              <span class="metric-card__value">CSE</span>
+              <small>IIUC student</small>
+            </article>
+          </div>
+        </div>
+
+        <div class="hero-visual" data-reveal="right">
+          <div id="avatar-stage" class="avatar-stage">
+            <span class="avatar-stage__halo"></span>
+            <span class="avatar-stage__orbit avatar-stage__orbit--one"></span>
+            <span class="avatar-stage__orbit avatar-stage__orbit--two"></span>
+            <div class="avatar-card tilt-target" data-tilt-strength="10">
+              <div class="avatar-card__shine"></div>
+              <img src="me.jpeg" alt="Portrait of Montaherul Islam">
+              <div class="avatar-card__meta">
+                <span>Frontend</span>
+                <span>Security</span>
+                <span>AI</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="scroll-cue">Scroll to explore</div>
+    </section>
+
+    <section id="about" class="section">
+      <div class="container about-grid">
+        <div class="section-heading" data-reveal="up">
+          <p class="eyebrow">About</p>
+          <h2>A developer mindset shaped by systems, usability, and detail.</h2>
+          <p>
+            I study Computer Science and Engineering at the International
+            Islamic University Chittagong. I care about clean interfaces,
+            practical problem-solving, and secure implementation.
+          </p>
+        </div>
+
+        <div class="about-panels">
+          <article class="glass-card terminal-card" data-reveal="left">
+            <p class="terminal-card__title">$ profile --summary</p>
+            <ul>
+              <li>Focused on responsive interfaces and usable interactions.</li>
+              <li>Building projects with Java, C++, and web technologies.</li>
+              <li>Interested in cybersecurity and AI-assisted tooling.</li>
+              <li>Learning through practical projects.</li>
+            </ul>
+          </article>
+
+          <div class="about-highlight-grid" data-reveal="right">
+            <article class="glass-card about-highlight">
+              <span class="about-highlight__label">Track</span>
+              <h3>Web engineering</h3>
+              <p>
+                Building interfaces that stay clear, responsive, and reliable
+                on desktop and mobile.
+              </p>
+            </article>
+            <article class="glass-card about-highlight">
+              <span class="about-highlight__label">Track</span>
+              <h3>Security mindset</h3>
+              <p>
+                Studying secure systems, attack surfaces, and defensive
+                thinking.
+              </p>
+            </article>
+            <article class="glass-card about-highlight">
+              <span class="about-highlight__label">Track</span>
+              <h3>AI exploration</h3>
+              <p>
+                Exploring tools that improve software workflows and user
+                experience.
+              </p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="section">
+      <div class="container">
+        <div class="section-heading section-heading--center" data-reveal="up">
+          <p class="eyebrow">Projects</p>
+          <h2>Featured work with a live GitHub project feed.</h2>
+          <p>
+            Filter projects by source, type, or GitHub language.
+          </p>
+        </div>
+
+        <div id="project-filter-bar" class="filter-bar" aria-label="Project filters" data-reveal="up">
+          <button type="button" class="filter-chip is-active" data-filter="all">
+            All
+          </button>
+          <button type="button" class="filter-chip" data-filter="featured">
+            Featured
+          </button>
+          <button type="button" class="filter-chip" data-filter="github">
+            GitHub
+          </button>
+          <button type="button" class="filter-chip" data-filter="frontend">
+            Frontend
+          </button>
+          <button type="button" class="filter-chip" data-filter="backend">
+            Backend
+          </button>
+        </div>
+
+        <div id="project-status" class="project-status" data-reveal="up">
+          Loading GitHub repositories...
+        </div>
+
+        <div id="project-grid" class="project-grid">
+          <article class="project-card tilt-target" data-tags="featured backend database sql" data-reveal="up"
+            data-tilt-strength="8">
+            <div class="project-card__media">
+              <img src="hospital.jpeg" alt="Hospital Management System project cover" loading="lazy">
+            </div>
+            <div class="project-card__body">
+              <div class="project-card__eyebrow">
+                <span>Featured</span>
+                <span>Backend</span>
+                <span>Database design</span>
+              </div>
+              <h3>IIUC Hospital Management System</h3>
+              <p>
+                A database project proposal covering problem analysis, ER
+                design, and implementation planning for hospital workflows.
+              </p>
+              <div class="project-card__links">
+                <a href="https://drive.google.com/file/d/1tpOdQttvOR8p192Q_7CLtPDuFbaXVsmz/view" target="_blank"
+                  rel="noreferrer">
+                  View proposal
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card tilt-target" data-tags="featured github backend java" data-reveal="up"
+            data-tilt-strength="8">
+            <div class="project-card__media">
+              <img src="OIP.webp" alt="Course Enrollment System project cover" loading="lazy">
+            </div>
+            <div class="project-card__body">
+              <div class="project-card__eyebrow">
+                <span>Featured</span>
+                <span>Backend</span>
+                <span>Java</span>
+              </div>
+              <h3>Course Enrollment System</h3>
+              <p>
+                A Java-based platform with enrollment flows, admin controls,
+                and role-based course management.
+              </p>
+              <div class="project-card__links">
+                <a href="https://github.com/montaherul/online_courses-" target="_blank" rel="noreferrer">
+                  View on GitHub
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card tilt-target" data-tags="featured github cpp game" data-reveal="up"
+            data-tilt-strength="8">
+            <div class="project-card__media">
+              <img src="tik.jpg" alt="Tic Tac Toe project cover" loading="lazy">
+            </div>
+            <div class="project-card__body">
+              <div class="project-card__eyebrow">
+                <span>Featured</span>
+                <span>C++</span>
+              </div>
+              <h3>Tic Tac Toe Game</h3>
+              <p>
+                A compact C++ project focused on game logic, structure, and
+                programming fundamentals.
+              </p>
+              <div class="project-card__links">
+                <a href="https://github.com/montaherul/tik-tak-toe" target="_blank" rel="noreferrer">
+                  View on GitHub
+                </a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="section">
+      <div class="container skills-grid">
+        <div class="section-heading" data-reveal="left">
+          <p class="eyebrow">Skills</p>
+          <h2>Core skills used to build practical projects.</h2>
+          <p>
+            I focus on clear interfaces, solid logic, and responsive design
+            that works well on smaller screens.
+          </p>
+
+          <div class="skill-cloud">
+            <span class="skill-cloud__chip">HTML</span>
+            <span class="skill-cloud__chip">CSS</span>
+            <span class="skill-cloud__chip">JavaScript</span>
+            <span class="skill-cloud__chip">React</span>
+            <span class="skill-cloud__chip">Node.js</span>
+            <span class="skill-cloud__chip">Java</span>
+            <span class="skill-cloud__chip">C++</span>
+            <span class="skill-cloud__chip">GitHub</span>
+            <span class="skill-cloud__chip">Figma</span>
+            <span class="skill-cloud__chip">Cybersecurity</span>
+          </div>
+        </div>
+
+        <div class="glass-card skills-panel" data-reveal="right">
+          <div class="skill-progress">
+            <div class="skill-progress__header">
+              <span>HTML / CSS</span>
+              <span>95%</span>
+            </div>
+            <div class="skill-progress__track">
+              <span class="skill-progress__bar" data-width="95%"></span>
+            </div>
+          </div>
+
+          <div class="skill-progress">
+            <div class="skill-progress__header">
+              <span>JavaScript</span>
+              <span>88%</span>
+            </div>
+            <div class="skill-progress__track">
+              <span class="skill-progress__bar" data-width="88%"></span>
+            </div>
+          </div>
+
+          <div class="skill-progress">
+            <div class="skill-progress__header">
+              <span>React</span>
+              <span>82%</span>
+            </div>
+            <div class="skill-progress__track">
+              <span class="skill-progress__bar" data-width="82%"></span>
+            </div>
+          </div>
+
+          <div class="skill-progress">
+            <div class="skill-progress__header">
+              <span>Node.js</span>
+              <span>76%</span>
+            </div>
+            <div class="skill-progress__track">
+              <span class="skill-progress__bar" data-width="76%"></span>
+            </div>
+          </div>
+
+          <div class="skill-progress">
+            <div class="skill-progress__header">
+              <span>Java / OOP</span>
+              <span>78%</span>
+            </div>
+            <div class="skill-progress__track">
+              <span class="skill-progress__bar" data-width="78%"></span>
+            </div>
+          </div>
+
+          <div class="skill-progress">
+            <div class="skill-progress__header">
+              <span>UI / UX Design</span>
+              <span>84%</span>
+            </div>
+            <div class="skill-progress__track">
+              <span class="skill-progress__bar" data-width="84%"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="github" class="section github-section">
+      <div class="container github-grid">
+        <article class="glass-card github-summary" data-reveal="left">
+          <p class="eyebrow">GitHub</p>
+          <h2>GitHub activity and live repository data.</h2>
+          <p>
+            This section shows public repositories, frontend and backend
+            labels, and languages from GitHub.
+          </p>
+          <div class="github-summary__stats">
+            <div>
+              <span id="star-count">0</span>
+              <small>Total stars</small>
+            </div>
+            <div>
+              <span id="active-count">0</span>
+              <small>Active repos shown</small>
+            </div>
+            <div>
+              <span id="top-language">None</span>
+              <small>Top language</small>
+            </div>
+          </div>
+          <div class="github-language-block">
+            <p class="github-language-block__title">Languages from GitHub</p>
+            <div id="github-language-list" class="github-language-list">
+              <span class="github-language-chip">Loading languages...</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="glass-card github-graph" data-reveal="right">
+          <img src="https://ghchart.rshah.org/0891b2/montaherul" alt="GitHub contribution graph for montaherul"
+            loading="lazy">
+        </article>
+      </div>
+    </section>
+
+    <section id="contact" class="section contact-section">
+      <div class="container contact-grid">
+        <div class="section-heading" data-reveal="left">
+          <p class="eyebrow">Contact</p>
+          <h2>Available for internships, collaborations, and web projects.</h2>
+          <p>
+            If you need a responsive interface or a student developer for a
+            real project, feel free to reach out.
+          </p>
+
+          <div class="contact-links">
+            <a href="mailto:islammonatherul@gmail.com">islammonatherul@gmail.com</a>
+            <a href="tel:+8801875989022">+8801875989022</a>
+            <a href="https://github.com/montaherul" target="_blank" rel="noreferrer">
+              github.com/montaherul
+            </a>
+            <a href="https://www.linkedin.com/in/montaherul-islam-5b47282a1/" target="_blank" rel="noreferrer">
+              LinkedIn profile
+            </a>
+          </div>
+        </div>
+
+        <form id="contact-form" class="glass-card contact-form" action="mailto:islammonatherul@gmail.com" method="post"
+          enctype="text/plain" data-reveal="right">
+          <label>
+            Full name
+            <input type="text" name="name" placeholder="Your name" required>
+          </label>
+          <label>
+            Email address
+            <input type="email" name="email" placeholder="name@example.com" required>
+          </label>
+          <label>
+            Subject
+            <input type="text" name="subject" placeholder="Project subject" required>
+          </label>
+          <label>
+            Message
+            <textarea name="message" rows="5" placeholder="Tell me about your project." required></textarea>
+          </label>
+          <button type="submit" class="button button--primary">
+            Send message
+          </button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <p>&copy; 2026 Montaherul Islam. Built as an interactive portfolio.</p>
+    </div>
+  </footer>
+
+  <noscript>
+    <div class="noscript-banner">
+      This portfolio uses JavaScript for animation, GitHub sync, and project
+      filtering.
+    </div>
+  </noscript>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
