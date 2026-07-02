@@ -2083,7 +2083,7 @@ h1, h2, h3, h4, h5, h6 {
 
   .hero-content {
     align-items: center;
-    order: 2;
+    order: 1;
   }
 
   .hero-subtitle {
@@ -2099,7 +2099,7 @@ h1, h2, h3, h4, h5, h6 {
   }
 
   .hero-visual {
-    order: 1;
+    order: 2;
   }
 
   .about-grid {

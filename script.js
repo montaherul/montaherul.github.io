@@ -498,6 +498,7 @@ function initSkillAnimations() {
         group.querySelectorAll(".skill-value").forEach(el => {
           const parent = el.closest("[data-width]");
           if (parent) {
+            el.textContent = "0%";
             animateSkillValue(el, parseInt(parent.dataset.width));
           }
         });
