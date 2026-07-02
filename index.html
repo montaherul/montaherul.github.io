@@ -1,485 +1,773 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Montaherul Islam | Portfolio</title>
-  <meta name="description"
-    content="Portfolio of Montaherul Islam featuring frontend projects, GitHub work, and practical web development skills.">
+  <title>Montaherul Islam — Full Stack Web Developer</title>
+  <meta name="description" content="Full Stack Web Developer specializing in enterprise web applications, scalable backend systems, cybersecurity principles, and AI-powered solutions. Based in Chattogram, Bangladesh.">
+  <meta name="keywords" content="Full Stack Developer, Web Developer, ASP.NET Core, C#, SQL Server, JavaScript, React, Node.js, Portfolio, Montaherul Islam">
+  <meta name="author" content="Montaherul Islam">
+  <meta property="og:title" content="Montaherul Islam — Full Stack Web Developer">
+  <meta property="og:description" content="Full Stack Web Developer specializing in enterprise web applications, scalable backend systems, cybersecurity principles, and AI-powered solutions.">
+  <meta property="og:image" content="https://montaherulislam.me/me.jpeg">
+  <meta property="og:url" content="https://montaherulislam.me">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Montaherul Islam — Full Stack Web Developer">
+  <meta name="twitter:description" content="Full Stack Web Developer specializing in enterprise web applications, scalable backend systems, cybersecurity principles, and AI-powered solutions.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@400;500;700&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <link rel="preload" as="image" href="me.jpeg">
+  <link rel="preload" as="image" href="hospital.jpeg">
+  <link rel="preload" as="image" href="OIP.webp">
+  <link rel="preload" as="image" href="tik.jpg">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💻</text></svg>">
 </head>
-
 <body>
-  <div id="preloader" class="preloader" aria-hidden="true">
-    <div class="preloader__core">
-      <span class="preloader__ring preloader__ring--one"></span>
-      <span class="preloader__ring preloader__ring--two"></span>
-      <span class="preloader__ring preloader__ring--three"></span>
-    </div>
-    <p class="preloader__label">Loading portfolio</p>
-  </div>
-
-  <div id="terminal-intro" class="terminal-intro" aria-hidden="true">
-    <div class="terminal-window">
-      <div class="terminal-window__bar">
-        <div class="terminal-window__lights">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-        <button id="skip-intro" type="button" class="terminal-window__skip">
-          Skip intro
-        </button>
+  <!-- PRELOADER -->
+  <div id="preloader" class="preloader" role="status" aria-label="Loading">
+    <div class="preloader-content">
+      <div class="preloader-logo">MI</div>
+      <div class="preloader-bar">
+        <div class="preloader-progress"></div>
       </div>
-      <pre><code id="terminal-text"></code></pre>
     </div>
   </div>
 
-  <div id="cursor-glow" class="cursor-glow" aria-hidden="true"></div>
-  <canvas id="particle-canvas" class="particle-canvas" aria-hidden="true"></canvas>
-  <div id="code-background" class="code-background" aria-hidden="true"></div>
+  <!-- CUSTOM CURSOR -->
+  <div class="cursor" aria-hidden="true">
+    <div class="cursor-dot"></div>
+    <div class="cursor-ring"></div>
+  </div>
 
-  <header id="site-header" class="site-header">
-    <div class="container nav-shell">
-      <a class="brand" href="#home" aria-label="Go to home section">
-        <span class="brand__mark">MI</span>
-        <span class="brand__copy">
-          <strong>Montaherul Islam</strong>
-          <small>Full Stack web development and secure UI work</small>
+  <!-- BACKGROUND EFFECTS -->
+  <div class="bg-effects" aria-hidden="true">
+    <div class="aurora"></div>
+    <div class="mesh-gradient"></div>
+    <div class="glow-blob glow-blob--1"></div>
+    <div class="glow-blob glow-blob--2"></div>
+    <div class="glow-blob glow-blob--3"></div>
+    <div class="noise-overlay"></div>
+    <canvas id="particle-canvas"></canvas>
+  </div>
+
+  <!-- SCROLL PROGRESS -->
+  <div class="scroll-progress" role="progressbar" aria-label="Scroll progress">
+    <div class="scroll-progress-bar"></div>
+  </div>
+
+  <!-- SITE HEADER -->
+  <header class="site-header" role="banner">
+    <nav class="navbar container" role="navigation" aria-label="Main navigation">
+      <a href="#home" class="logo" aria-label="Montaherul Islam Home">
+        <span class="logo-mark">MI</span>
+        <span class="logo-text">
+          <span class="logo-name">Montaherul Islam</span>
+          <span class="logo-title">Full Stack Developer</span>
         </span>
       </a>
-
-      <button id="nav-toggle" class="nav-toggle" type="button" aria-controls="site-nav" aria-expanded="false"
-        aria-label="Toggle navigation">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-
-      <nav id="site-nav" class="site-nav">
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-        <a href="#skills">Skills</a>
-        <a href="#github">GitHub</a>
-        <a href="#contact" class="site-nav__cta">Contact</a>
-      </nav>
-    </div>
+      <div class="nav-links" id="nav-links" role="menubar">
+        <a href="#home" class="nav-link active" role="menuitem" data-nav>Home</a>
+        <a href="#about" class="nav-link" role="menuitem" data-nav>About</a>
+        <a href="#projects" class="nav-link" role="menuitem" data-nav>Projects</a>
+        <a href="#skills" class="nav-link" role="menuitem" data-nav>Skills</a>
+        <a href="#github" class="nav-link" role="menuitem" data-nav>GitHub</a>
+        <a href="#contact" class="nav-link" role="menuitem" data-nav>Contact</a>
+      </div>
+      <div class="nav-actions">
+        <button class="theme-toggle" aria-label="Toggle theme" data-theme-toggle>
+          <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+        <a href="/Montaherul Islam.pdf" class="btn btn-ghost btn-sm resume-btn" download aria-label="Download Resume">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          <span>Resume</span>
+        </a>
+        <button class="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </nav>
   </header>
 
-  <main>
-    <section id="home" class="hero section">
-      <div class="container hero-grid">
-        <div class="hero-copy" data-reveal="left">
-          <p class="eyebrow">Portfolio</p>
-          <h1>
-            Full Stack web development  built with clarity, motion, and purpose.
+  <!-- HERO SECTION -->
+  <section id="home" class="hero section" aria-label="Home">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-content" data-reveal="left">
+          <div class="hero-badge">
+            <span class="badge-dot"></span>
+            <span>Full Stack Web Developer</span>
+          </div>
+          <h1 class="hero-headline">
+            Building modern digital experiences with
+            <span class="gradient-text">clean code</span>,
+            security, and AI.
           </h1>
-          <p class="hero-copy__lead">
-            I'm Montaherul Islam, a Computer Science student in Chattogram
-            focused on Full stack web development, cybersecurity, and practical AI
-            tools.
+          <p class="hero-subtitle">
+            Full Stack Web Developer specializing in enterprise web applications,
+            scalable backend systems, cybersecurity principles, and AI-powered solutions.
           </p>
-          <p class="hero-copy__typing">
-            Current focus:
-            <span id="typed-text">Full stack Develpoer</span>
-          </p>
-          <div class="hero-actions">
-            <a class="button button--primary" href="#projects">View projects</a>
-            <a class="button button--secondary" href="#contact">Contact me</a>
+          <div class="hero-cta">
+            <a href="#projects" class="btn btn-primary magnetic" data-magnetic>
+              <span>View Projects</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+            <a href="/Montaherul Islam.pdf" class="btn btn-secondary magnetic" data-magnetic download>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              <span>Download Resume</span>
+            </a>
+            <a href="#contact" class="btn btn-ghost magnetic" data-magnetic>
+              <span>Contact Me</span>
+            </a>
           </div>
-          <div class="hero-metrics">
-            <article class="metric-card">
-              <span id="repo-count" class="metric-card__value">00</span>
-              <small>Public repos</small>
-            </article>
-            <article class="metric-card">
-              <span id="language-count" class="metric-card__value">00</span>
-              <small>GitHub languages</small>
-            </article>
-            <article class="metric-card">
-              <span class="metric-card__value">CSE</span>
-              <small>IIUC student</small>
-            </article>
+          <div class="hero-stats">
+            <div class="stat-card glass" data-reveal data-reveal-delay="100">
+              <span class="stat-number" id="repo-count" data-count="0">0</span>
+              <span class="stat-label">Repositories</span>
+            </div>
+            <div class="stat-card glass" data-reveal data-reveal-delay="200">
+              <span class="stat-number" id="language-count" data-count="0">0</span>
+              <span class="stat-label">Technologies</span>
+            </div>
+            <div class="stat-card glass" data-reveal data-reveal-delay="300">
+              <span class="stat-number" id="star-count" data-count="0">0</span>
+              <span class="stat-label">GitHub Stars</span>
+            </div>
+            <div class="stat-card glass" data-reveal data-reveal-delay="400">
+              <span class="stat-number" id="active-count" data-count="0">0</span>
+              <span class="stat-label">Projects</span>
+            </div>
+            <div class="stat-card glass" data-reveal data-reveal-delay="500">
+              <span class="stat-number stat-static" data-count="3">0</span>
+              <span class="stat-label">Years Learning</span>
+            </div>
           </div>
         </div>
-
         <div class="hero-visual" data-reveal="right">
-          <div id="avatar-stage" class="avatar-stage">
-            <span class="avatar-stage__halo"></span>
-            <span class="avatar-stage__orbit avatar-stage__orbit--one"></span>
-            <span class="avatar-stage__orbit avatar-stage__orbit--two"></span>
-            <div class="avatar-card tilt-target" data-tilt-strength="10">
-              <div class="avatar-card__shine"></div>
-              <img src="me.jpeg" alt="Portrait of Montaherul Islam">
-              <div class="avatar-card__meta">
-                <span>Frontend</span>
-                <span>Backend</span>
-                <span>Database & Security</span>
-                <span>AI</span>
-              </div>
+          <div class="avatar-stage">
+            <div class="avatar-halo"></div>
+            <div class="avatar-ring"></div>
+            <div class="avatar-wrapper tilt-target" data-tilt-strength="15">
+              <img src="me.jpeg" alt="Montaherul Islam" class="avatar-img" loading="eager">
+              <div class="avatar-shine"></div>
+            </div>
+            <div class="tech-tags">
+              <span class="tech-tag">Frontend</span>
+              <span class="tech-tag">Backend</span>
+              <span class="tech-tag">Database & Security</span>
+              <span class="tech-tag">AI</span>
             </div>
           </div>
         </div>
       </div>
-      <div class="scroll-cue">Scroll! please </div>
-    </section>
+    </div>
+    <div class="hero-gradient-divider"></div>
+  </section>
 
-    <section id="about" class="section">
-      <div class="container about-grid">
-        <div class="section-heading" data-reveal="up">
-          <p class="eyebrow">About</p>
-          <h2>A developer mindset shaped by systems, usability, and detail.</h2>
-          <p>
-            I study Computer Science and Engineering at the International
-            Islamic University Chittagong. I care about clean interfaces,
-            practical problem-solving, and secure implementation.
-          </p>
+  <!-- ABOUT SECTION -->
+  <section id="about" class="section" aria-label="About Me">
+    <div class="container">
+      <div class="section-header" data-reveal>
+        <span class="section-eyebrow">About</span>
+        <h2 class="section-title">Who I Am</h2>
+        <p class="section-desc">A developer passionate about building secure, scalable, and intelligent software solutions.</p>
+      </div>
+      <div class="about-grid">
+        <div class="terminal-card glass" data-reveal="left">
+          <div class="terminal-header">
+            <div class="terminal-dots">
+              <span class="terminal-dot dot-red"></span>
+              <span class="terminal-dot dot-yellow"></span>
+              <span class="terminal-dot dot-green"></span>
+            </div>
+            <span class="terminal-title">profile —summary</span>
+          </div>
+          <div class="terminal-body">
+            <div class="terminal-line">
+              <span class="prompt">$</span>
+              <span class="command">profile --summary</span>
+            </div>
+            <div class="terminal-line">
+              <span class="output">▸ Full Stack Web Developer with expertise in building scalable web applications</span>
+            </div>
+            <div class="terminal-line">
+              <span class="output">▸ Computer Science & Engineering student at IIUC, Chattogram</span>
+            </div>
+            <div class="terminal-line">
+              <span class="output">▸ Passionate about clean architecture, security-first development, and AI-assisted engineering</span>
+            </div>
+            <div class="terminal-line">
+              <span class="output">▸ Focused on enterprise-grade solutions with ASP.NET Core, C#, SQL Server, and modern JavaScript</span>
+            </div>
+            <div class="terminal-line cursor-line">
+              <span class="cursor-blink">▌</span>
+            </div>
+          </div>
         </div>
-
-        <div class="about-panels">
-          <article class="glass-card terminal-card" data-reveal="left">
-            <p class="terminal-card__title">$ profile --summary</p>
-            <ul>
-              <li>Focused on responsive interfaces and usable interactions.</li>
-              <li>Building projects with Java, C++, and web technologies.</li>
-              <li>Interested in cybersecurity and AI-assisted tooling.</li>
-              <li>Learning through practical projects.</li>
-            </ul>
-          </article>
-
-          <div class="about-highlight-grid" data-reveal="right">
-            <article class="glass-card about-highlight">
-              <span class="about-highlight__label">Track</span>
-              <h3>Web engineering</h3>
-              <p>
-                Building interfaces that stay clear, responsive, and reliable
-                on desktop and mobile.
-              </p>
-            </article>
-            <article class="glass-card about-highlight">
-              <span class="about-highlight__label">Track</span>
-              <h3>Security mindset</h3>
-              <p>
-                Studying secure systems, attack surfaces, and defensive
-                thinking.
-              </p>
-            </article>
-            <article class="glass-card about-highlight">
-              <span class="about-highlight__label">Track</span>
-              <h3>AI exploration</h3>
-              <p>
-                Exploring tools that improve software workflows and user
-                experience.
-              </p>
-            </article>
+        <div class="about-cards" data-reveal="right">
+          <div class="about-card glass tilt-target" data-tilt-strength="10">
+            <div class="card-icon-wrapper">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            </div>
+            <h3>Web Engineering</h3>
+            <p>Building robust, scalable web applications with ASP.NET Core, C#, and modern frontend technologies. Focused on clean architecture and maintainable codebases.</p>
+          </div>
+          <div class="about-card glass tilt-target" data-tilt-strength="10">
+            <div class="card-icon-wrapper">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--secondary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            </div>
+            <h3>Security Mindset</h3>
+            <p>Integrating cybersecurity principles into every layer of development. From secure authentication to data protection, security is not an afterthought — it&rsquo;s foundational.</p>
+          </div>
+          <div class="about-card glass tilt-target" data-tilt-strength="10">
+            <div class="card-icon-wrapper">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--highlight)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 0 1 10 10c0 2.5-1 4.8-2.5 6.5"/><path d="M2 12a10 10 0 0 1 10-10"/><path d="M12 22a10 10 0 0 0 10-10"/><path d="M2 12a10 10 0 0 0 10 10"/><path d="M12 2v20"/><path d="M2 12h20"/></svg>
+            </div>
+            <h3>AI Exploration</h3>
+            <p>Leveraging AI-assisted development tools and exploring machine learning integrations to build smarter, more efficient software solutions for real-world problems.</p>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section id="projects" class="section">
-      <div class="container">
-        <div class="section-heading section-heading--center" data-reveal="up">
-          <p class="eyebrow">Projects</p>
-          <h2>Featured work with a live GitHub project feed.</h2>
-          <p>
-            Filter projects by source, type, or GitHub language.
-          </p>
-        </div>
-
-        <div id="project-filter-bar" class="filter-bar" aria-label="Project filters" data-reveal="up">
-          <button type="button" class="filter-chip is-active" data-filter="all">
-            All
-          </button>
-          <button type="button" class="filter-chip" data-filter="featured">
-            Featured
-          </button>
-          <button type="button" class="filter-chip" data-filter="github">
-            GitHub
-          </button>
-          <button type="button" class="filter-chip" data-filter="frontend">
-            Frontend
-          </button>
-          <button type="button" class="filter-chip" data-filter="backend">
-            Backend
-          </button>
-        </div>
-
-        <div id="project-status" class="project-status" data-reveal="up">
-          Loading GitHub repositories...
-        </div>
-
-        <div id="project-grid" class="project-grid">
-          <article class="project-card tilt-target" data-tags="featured backend database sql" data-reveal="up"
-            data-tilt-strength="8">
-            <div class="project-card__media">
-              <img src="hospital.jpeg" alt="Hospital Management System project cover" loading="lazy">
-            </div>
-            <div class="project-card__body">
-              <div class="project-card__eyebrow">
-                <span>Featured</span>
-                <span>Backend</span>
-                <span>Database design</span>
-              </div>
-              <h3>IIUC Hospital Management System</h3>
-              <p>
-                A database project proposal covering problem analysis, ER
-                design, and implementation planning for hospital workflows.
-              </p>
-              <div class="project-card__links">
-                <a href="https://drive.google.com/file/d/1tpOdQttvOR8p192Q_7CLtPDuFbaXVsmz/view" target="_blank"
-                  rel="noreferrer">
-                  View proposal
+  <!-- PROJECTS SECTION -->
+  <section id="projects" class="section" aria-label="Projects">
+    <div class="container">
+      <div class="section-header" data-reveal>
+        <span class="section-eyebrow">Projects</span>
+        <h2 class="section-title">What I&rsquo;ve Built</h2>
+        <p class="section-desc">Real-world applications showcasing my expertise in full-stack development, database design, and software architecture.</p>
+      </div>
+      <div class="filter-bar glass" data-reveal role="tablist" aria-label="Project filters">
+        <button class="filter-chip active" data-filter="all" role="tab" aria-selected="true">All</button>
+        <button class="filter-chip" data-filter="featured" role="tab" aria-selected="false">Featured</button>
+        <button class="filter-chip" data-filter="github" role="tab" aria-selected="false">GitHub</button>
+        <button class="filter-chip" data-filter="frontend" role="tab" aria-selected="false">Frontend</button>
+        <button class="filter-chip" data-filter="backend" role="tab" aria-selected="false">Backend</button>
+        <div class="filter-indicator" aria-hidden="true"></div>
+      </div>
+      <div class="projects-status" id="projects-status" role="status"></div>
+      <div class="project-grid" id="project-grid" role="tabpanel">
+        <!-- Hospital Management System -->
+        <article class="project-card glass tilt-target" data-tags="featured backend database sql" data-tilt-strength="8" data-reveal>
+          <div class="project-image">
+            <img src="hospital.jpeg" alt="Hospital Management System" loading="lazy">
+            <div class="project-overlay">
+              <div class="project-links">
+                <a href="#" class="project-link-btn" aria-label="View Live Demo">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                </a>
+                <a href="#" class="project-link-btn" aria-label="View GitHub Repository">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                </a>
+                <a href="#" class="project-link-btn" aria-label="View Details">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
                 </a>
               </div>
             </div>
-          </article>
-
-          <article class="project-card tilt-target" data-tags="featured github backend java" data-reveal="up"
-            data-tilt-strength="8">
-            <div class="project-card__media">
-              <img src="OIP.webp" alt="Course Enrollment System project cover" loading="lazy">
+            <div class="project-tech">
+              <span class="tech-chip">C#</span>
+              <span class="tech-chip">ASP.NET Core</span>
+              <span class="tech-chip">SQL Server</span>
             </div>
-            <div class="project-card__body">
-              <div class="project-card__eyebrow">
-                <span>Featured</span>
-                <span>Backend</span>
-                <span>Java</span>
+          </div>
+          <div class="project-info">
+            <div class="project-eyebrow">
+              <span class="project-type">Featured Project</span>
+              <span class="project-category">Backend</span>
+            </div>
+            <h3 class="project-title">Hospital Management System</h3>
+            <p class="project-desc">
+              A comprehensive hospital management platform built with ASP.NET Core and SQL Server.
+              Features include patient registration, appointment scheduling, billing, and role-based access control.
+            </p>
+            <div class="project-footer">
+              <div class="project-meta">
+                <span class="project-lang">
+                  <span class="lang-dot" style="background: #68217A"></span>
+                  C#
+                </span>
               </div>
-              <h3>Course Enrollment System</h3>
-              <p>
-                A Java-based platform with enrollment flows, admin controls,
-                and role-based course management.
-              </p>
-              <div class="project-card__links">
-                <a href="https://github.com/montaherul/online_courses-" target="_blank" rel="noreferrer">
-                  View on GitHub
-                </a>
-              </div>
-            </div>
-          </article>
-
-          <article class="project-card tilt-target" data-tags="featured github cpp game" data-reveal="up"
-            data-tilt-strength="8">
-            <div class="project-card__media">
-              <img src="tik.jpg" alt="Tic Tac Toe project cover" loading="lazy">
-            </div>
-            <div class="project-card__body">
-              <div class="project-card__eyebrow">
-                <span>Featured</span>
-                <span>C++</span>
-              </div>
-              <h3>Tic Tac Toe Game</h3>
-              <p>
-                A compact C++ project focused on game logic, structure, and
-                programming fundamentals.
-              </p>
-              <div class="project-card__links">
-                <a href="https://github.com/montaherul/tik-tak-toe" target="_blank" rel="noreferrer">
-                  View on GitHub
-                </a>
-              </div>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="skills" class="section">
-      <div class="container skills-grid">
-        <div class="section-heading" data-reveal="left">
-          <p class="eyebrow">Skills</p>
-          <h2>Core skills used to build practical projects.</h2>
-          <p>
-            I focus on clear interfaces, solid logic, and responsive design
-            that works well on smaller screens.
-          </p>
-
-          <div class="skill-cloud">
-            <span class="skill-cloud__chip">HTML</span>
-            <span class="skill-cloud__chip">CSS</span>
-            <span class="skill-cloud__chip">JavaScript</span>
-            <span class="skill-cloud__chip">React</span>
-            <span class="skill-cloud__chip">Node.js</span>
-            <span class="skill-cloud__chip">Java</span>
-            <span class="skill-cloud__chip">C++</span>
-            <span class="skill-cloud__chip">GitHub</span>
-            <span class="skill-cloud__chip">C#</span>
-            <span class="skill-cloud__chip">Cybersecurity</span>
-          </div>
-        </div>
-
-        <div class="glass-card skills-panel" data-reveal="right">
-          <div class="skill-progress">
-            <div class="skill-progress__header">
-              <span>HTML / CSS</span>
-              <span>95%</span>
-            </div>
-            <div class="skill-progress__track">
-              <span class="skill-progress__bar" data-width="95%"></span>
-            </div>
-          </div>
-
-          <div class="skill-progress">
-            <div class="skill-progress__header">
-              <span>JavaScript</span>
-              <span>88%</span>
-            </div>
-            <div class="skill-progress__track">
-              <span class="skill-progress__bar" data-width="88%"></span>
-            </div>
-          </div>
-
-          <div class="skill-progress">
-            <div class="skill-progress__header">
-              <span>React</span>
-              <span>82%</span>
-            </div>
-            <div class="skill-progress__track">
-              <span class="skill-progress__bar" data-width="82%"></span>
-            </div>
-          </div>
-
-          <div class="skill-progress">
-            <div class="skill-progress__header">
-              <span>Node.js</span>
-              <span>76%</span>
-            </div>
-            <div class="skill-progress__track">
-              <span class="skill-progress__bar" data-width="76%"></span>
-            </div>
-          </div>
-
-          <div class="skill-progress">
-            <div class="skill-progress__header">
-              <span>Java / OOP</span>
-              <span>78%</span>
-            </div>
-            <div class="skill-progress__track">
-              <span class="skill-progress__bar" data-width="78%"></span>
-            </div>
-          </div>
-
-          <div class="skill-progress">
-            <div class="skill-progress__header">
-              <span>UI / UX Design</span>
-              <span>84%</span>
-            </div>
-            <div class="skill-progress__track">
-              <span class="skill-progress__bar" data-width="84%"></span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="github" class="section github-section">
-      <div class="container github-grid">
-        <article class="glass-card github-summary" data-reveal="left">
-          <p class="eyebrow">GitHub</p>
-          <h2>GitHub activity and live repository data.</h2>
-          <p>
-            This section shows public repositories, frontend and backend
-            labels, and languages from GitHub.
-          </p>
-          <div class="github-summary__stats">
-            <div>
-              <span id="star-count">0</span>
-              <small>Total stars</small>
-            </div>
-            <div>
-              <span id="active-count">0</span>
-              <small>Active repos shown</small>
-            </div>
-            <div>
-              <span id="top-language">None</span>
-              <small>Top language</small>
-            </div>
-          </div>
-          <div class="github-language-block">
-            <p class="github-language-block__title">Languages from GitHub</p>
-            <div id="github-language-list" class="github-language-list">
-              <span class="github-language-chip">Loading languages...</span>
+              <a href="#" class="project-link">
+                <span>View Project</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </a>
             </div>
           </div>
         </article>
 
-        <article class="glass-card github-graph" data-reveal="right">
-          <img src="https://ghchart.rshah.org/0891b2/montaherul" alt="GitHub contribution graph for montaherul"
-            loading="lazy">
+        <!-- Course Enrollment System -->
+        <article class="project-card glass tilt-target" data-tags="featured backend frontend" data-tilt-strength="8" data-reveal data-reveal-delay="100">
+          <div class="project-image">
+            <img src="OIP.webp" alt="Course Enrollment System" loading="lazy">
+            <div class="project-overlay">
+              <div class="project-links">
+                <a href="#" class="project-link-btn" aria-label="View Live Demo">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                </a>
+                <a href="#" class="project-link-btn" aria-label="View GitHub Repository">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                </a>
+                <a href="#" class="project-link-btn" aria-label="View Details">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
+                </a>
+              </div>
+            </div>
+            <div class="project-tech">
+              <span class="tech-chip">C#</span>
+              <span class="tech-chip">ASP.NET</span>
+              <span class="tech-chip">SQL</span>
+            </div>
+          </div>
+          <div class="project-info">
+            <div class="project-eyebrow">
+              <span class="project-type">Featured Project</span>
+              <span class="project-category">Full Stack</span>
+            </div>
+            <h3 class="project-title">Course Enrollment System</h3>
+            <p class="project-desc">
+              A university course enrollment system with student registration, course management,
+              prerequisite validation, and schedule conflict detection.
+            </p>
+            <div class="project-footer">
+              <div class="project-meta">
+                <span class="project-lang">
+                  <span class="lang-dot" style="background: #68217A"></span>
+                  C#
+                </span>
+              </div>
+              <a href="#" class="project-link">
+                <span>View Project</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Tic Tac Toe -->
+        <article class="project-card glass tilt-target" data-tags="featured frontend javascript" data-tilt-strength="8" data-reveal data-reveal-delay="200">
+          <div class="project-image">
+            <img src="tik.jpg" alt="Tic Tac Toe Game" loading="lazy">
+            <div class="project-overlay">
+              <div class="project-links">
+                <a href="#" class="project-link-btn" aria-label="View Live Demo">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                </a>
+                <a href="#" class="project-link-btn" aria-label="View GitHub Repository">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                </a>
+                <a href="#" class="project-link-btn" aria-label="View Details">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
+                </a>
+              </div>
+            </div>
+            <div class="project-tech">
+              <span class="tech-chip">JavaScript</span>
+              <span class="tech-chip">HTML</span>
+              <span class="tech-chip">CSS</span>
+            </div>
+          </div>
+          <div class="project-info">
+            <div class="project-eyebrow">
+              <span class="project-type">Featured Project</span>
+              <span class="project-category">Frontend</span>
+            </div>
+            <h3 class="project-title">Tic Tac Toe Game</h3>
+            <p class="project-desc">
+              A classic Tic Tac Toe game with a clean, modern interface. Features include
+              two-player mode, score tracking, and responsive design for all devices.
+            </p>
+            <div class="project-footer">
+              <div class="project-meta">
+                <span class="project-lang">
+                  <span class="lang-dot" style="background: #F7DF1E"></span>
+                  JavaScript
+                </span>
+              </div>
+              <a href="#" class="project-link">
+                <span>View Project</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </a>
+            </div>
+          </div>
         </article>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section id="contact" class="section contact-section">
-      <div class="container contact-grid">
-        <div class="section-heading" data-reveal="left">
-          <p class="eyebrow">Contact</p>
-          <h2>Available for internships, collaborations, and web projects.</h2>
-          <p>
-            If you need a responsive interface or a student developer for a
-            real project, feel free to reach out.
-          </p>
-
-          <div class="contact-links">
-            <a href="mailto:islammonatherul@gmail.com">islammonatherul@gmail.com</a>
-            <a href="tel:+8801875989022">+8801875989022</a>
-            <a href="https://github.com/montaherul" target="_blank" rel="noreferrer">
-              github.com/montaherul
-            </a>
-            <a href="https://www.linkedin.com/in/montaherul-islam-5b47282a1/" target="_blank" rel="noreferrer">
-              LinkedIn profile
-            </a>
+  <!-- SKILLS SECTION -->
+  <section id="skills" class="section" aria-label="Skills">
+    <div class="container">
+      <div class="section-header" data-reveal>
+        <span class="section-eyebrow">Skills</span>
+        <h2 class="section-title">My Toolbox</h2>
+        <p class="section-desc">Technologies and tools I use to build modern, scalable applications.</p>
+      </div>
+      <div class="skills-grid" data-reveal>
+        <div class="skill-group glass">
+          <div class="skill-group-header">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            <h3>Frontend</h3>
+          </div>
+          <div class="skill-items">
+            <div class="skill-item" data-skill="HTML" data-width="95">
+              <div class="skill-info">
+                <span class="skill-name">HTML</span>
+                <span class="skill-value" id="skill-html">0%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" data-width="95" style="width:0%"></div>
+              </div>
+            </div>
+            <div class="skill-item" data-skill="CSS" data-width="92">
+              <div class="skill-info">
+                <span class="skill-name">CSS</span>
+                <span class="skill-value" id="skill-css">0%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" data-width="92" style="width:0%"></div>
+              </div>
+            </div>
+            <div class="skill-item" data-skill="JavaScript" data-width="88">
+              <div class="skill-info">
+                <span class="skill-name">JavaScript</span>
+                <span class="skill-value" id="skill-js">0%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" data-width="88" style="width:0%"></div>
+              </div>
+            </div>
+            <div class="skill-item" data-skill="React" data-width="78">
+              <div class="skill-info">
+                <span class="skill-name">React</span>
+                <span class="skill-value" id="skill-react">0%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" data-width="78" style="width:0%"></div>
+              </div>
+            </div>
           </div>
         </div>
-
-        <form id="contact-form" class="glass-card contact-form" action="mailto:islammonatherul@gmail.com" method="post"
-          enctype="text/plain" data-reveal="right">
-          <label>
-            Full name
-            <input type="text" name="name" placeholder="Your name" required>
-          </label>
-          <label>
-            Email address
-            <input type="email" name="email" placeholder="name@example.com" required>
-          </label>
-          <label>
-            Subject
-            <input type="text" name="subject" placeholder="Project subject" required>
-          </label>
-          <label>
-            Message
-            <textarea name="message" rows="5" placeholder="Tell me about your project." required></textarea>
-          </label>
-          <button type="submit" class="button button--primary">
-            Send message
-          </button>
-        </form>
+        <div class="skill-group glass">
+          <div class="skill-group-header">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--secondary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            <h3>Backend</h3>
+          </div>
+          <div class="skill-items">
+            <div class="skill-item" data-skill="Node.js" data-width="76">
+              <div class="skill-info">
+                <span class="skill-name">Node.js</span>
+                <span class="skill-value" id="skill-node">0%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" data-width="76" style="width:0%"></div>
+              </div>
+            </div>
+            <div class="skill-item" data-skill="ASP.NET Core" data-width="82">
+              <div class="skill-info">
+                <span class="skill-name">ASP.NET Core</span>
+                <span class="skill-value" id="skill-asp">0%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" data-width="82" style="width:0%"></div>
+              </div>
+            </div>
+            <div class="skill-item" data-skill="C#" data-width="85">
+              <div class="skill-info">
+                <span class="skill-name">C#</span>
+                <span class="skill-value" id="skill-csharp">0%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" data-width="85" style="width:0%"></div>
+              </div>
+            </div>
+            <div class="skill-item" data-skill="Java" data-width="70">
+              <div class="skill-info">
+                <span class="skill-name">Java</span>
+                <span class="skill-value" id="skill-java">0%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" data-width="70" style="width:0%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="skill-group glass">
+          <div class="skill-group-header">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--highlight)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+            <h3>Database</h3>
+          </div>
+          <div class="skill-items">
+            <div class="skill-item" data-skill="SQL Server" data-width="80">
+              <div class="skill-info">
+                <span class="skill-name">SQL Server</span>
+                <span class="skill-value" id="skill-sql">0%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" data-width="80" style="width:0%"></div>
+              </div>
+            </div>
+            <div class="skill-item" data-skill="Entity Framework" data-width="78">
+              <div class="skill-info">
+                <span class="skill-name">Entity Framework</span>
+                <span class="skill-value" id="skill-ef">0%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" data-width="78" style="width:0%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="skill-group glass">
+          <div class="skill-group-header">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            <h3>Tools</h3>
+          </div>
+          <div class="skill-items">
+            <div class="skill-item" data-skill="Git" data-width="85">
+              <div class="skill-info">
+                <span class="skill-name">Git</span>
+                <span class="skill-value" id="skill-git">0%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" data-width="85" style="width:0%"></div>
+              </div>
+            </div>
+            <div class="skill-item" data-skill="Bootstrap" data-width="82">
+              <div class="skill-info">
+                <span class="skill-name">Bootstrap</span>
+                <span class="skill-value" id="skill-bootstrap">0%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" data-width="82" style="width:0%"></div>
+              </div>
+            </div>
+            <div class="skill-item" data-skill="UI/UX" data-width="84">
+              <div class="skill-info">
+                <span class="skill-name">UI/UX</span>
+                <span class="skill-value" id="skill-uiux">0%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" data-width="84" style="width:0%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </section>
-  </main>
+    </div>
+  </section>
 
-  <footer class="site-footer">
-    <div class="container site-footer__inner">
-      <p>&copy; 2026 Montaherul Islam. Built as an interactive portfolio.</p>
+  <!-- GITHUB SECTION -->
+  <section id="github" class="section" aria-label="GitHub">
+    <div class="container">
+      <div class="section-header" data-reveal>
+        <span class="section-eyebrow">GitHub</span>
+        <h2 class="section-title">Open Source</h2>
+        <p class="section-desc">My contributions, projects, and activity on GitHub.</p>
+      </div>
+      <div class="github-dashboard" data-reveal>
+        <div class="github-stats">
+          <div class="github-stat-card glass">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <span class="github-stat-number" id="star-count-github">0</span>
+            <span class="github-stat-label">Stars</span>
+          </div>
+          <div class="github-stat-card glass">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--secondary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <span class="github-stat-number" id="active-count-github">0</span>
+            <span class="github-stat-label">Active Repos</span>
+          </div>
+          <div class="github-stat-card glass">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--highlight)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            <span class="github-stat-number" id="top-language-github">N/A</span>
+            <span class="github-stat-label">Top Language</span>
+          </div>
+          <div class="github-stat-card glass">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span class="github-stat-number" id="fork-count-github">0</span>
+            <span class="github-stat-label">Forks</span>
+          </div>
+        </div>
+        <div class="github-content">
+          <div class="github-repos glass">
+            <div class="github-repos-header">
+              <h3>Languages</h3>
+            </div>
+            <div class="github-language-list" id="github-language-list">
+              <span class="github-language-chip">Loading...</span>
+            </div>
+          </div>
+          <div class="github-contributions glass">
+            <div class="github-repos-header">
+              <h3>Contributions</h3>
+            </div>
+            <div class="contribution-graph">
+              <img src="https://ghchart.rshah.org/00E5FF/montaherul" alt="GitHub contribution graph" loading="lazy" class="contribution-img">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT SECTION -->
+  <section id="contact" class="section" aria-label="Contact">
+    <div class="container">
+      <div class="section-header" data-reveal>
+        <span class="section-eyebrow">Contact</span>
+        <h2 class="section-title">Get In Touch</h2>
+        <p class="section-desc">Have a project in mind? Let&rsquo;s build something great together.</p>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-form-wrapper glass" data-reveal="left">
+          <form class="contact-form" id="contact-form" action="mailto:montaherul360@gmail.com" method="post" enctype="text/plain" novalidate>
+            <div class="form-group">
+              <div class="input-group floating">
+                <input type="text" id="name" name="name" class="form-input" required autocomplete="name">
+                <label for="name" class="form-label">Your Name</label>
+                <span class="input-highlight"></span>
+              </div>
+              <div class="form-status" id="name-status" role="alert"></div>
+            </div>
+            <div class="form-group">
+              <div class="input-group floating">
+                <input type="email" id="email" name="email" class="form-input" required autocomplete="email">
+                <label for="email" class="form-label">Your Email</label>
+                <span class="input-highlight"></span>
+              </div>
+              <div class="form-status" id="email-status" role="alert"></div>
+            </div>
+            <div class="form-group">
+              <div class="input-group floating">
+                <input type="text" id="subject" name="subject" class="form-input" required>
+                <label for="subject" class="form-label">Subject</label>
+                <span class="input-highlight"></span>
+              </div>
+              <div class="form-status" id="subject-status" role="alert"></div>
+            </div>
+            <div class="form-group">
+              <div class="input-group floating">
+                <textarea id="message" name="message" class="form-input form-textarea" required rows="5"></textarea>
+                <label for="message" class="form-label">Your Message</label>
+                <span class="input-highlight"></span>
+              </div>
+              <div class="form-status" id="message-status" role="alert"></div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block magnetic submit-btn" data-magnetic id="submit-btn">
+              <span class="btn-text">Send Message</span>
+              <span class="btn-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              </span>
+              <div class="btn-ripple"></div>
+            </button>
+          </form>
+        </div>
+        <div class="contact-info" data-reveal="right">
+          <div class="contact-socials">
+            <a href="https://github.com/montaherul" target="_blank" rel="noopener noreferrer" class="social-card glass tilt-target" data-tilt-strength="8" aria-label="GitHub Profile">
+              <div class="social-icon github-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+              </div>
+              <div class="social-info">
+                <span class="social-name">GitHub</span>
+                <span class="social-handle">@montaherul</span>
+              </div>
+              <svg class="social-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+            <a href="https://linkedin.com/in/montaherul" target="_blank" rel="noopener noreferrer" class="social-card glass tilt-target" data-tilt-strength="8" aria-label="LinkedIn Profile">
+              <div class="social-icon linkedin-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              </div>
+              <div class="social-info">
+                <span class="social-name">LinkedIn</span>
+                <span class="social-handle">Connect with me</span>
+              </div>
+              <svg class="social-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+            <a href="mailto:montaherul360@gmail.com" class="social-card glass tilt-target" data-tilt-strength="8" aria-label="Send Email">
+              <div class="social-icon email-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </div>
+              <div class="social-info">
+                <span class="social-name">Email</span>
+                <span class="social-handle">montaherul360@gmail.com</span>
+              </div>
+              <svg class="social-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+            <a href="tel:+880123456789" class="social-card glass tilt-target" data-tilt-strength="8" aria-label="Call">
+              <div class="social-icon phone-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              </div>
+              <div class="social-info">
+                <span class="social-name">Phone</span>
+                <span class="social-handle">Chattogram, Bangladesh</span>
+              </div>
+              <svg class="social-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+          <div class="contact-availability glass">
+            <div class="availability-indicator">
+              <span class="availability-dot"></span>
+              <span>Available for opportunities</span>
+            </div>
+            <p>Based in Chattogram, Bangladesh. Open to remote work, freelance projects, and full-time positions.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <a href="#home" class="footer-logo">MI</a>
+          <p class="footer-tagline">Full Stack Web Developer</p>
+        </div>
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <a href="#home">Home</a>
+          <a href="#about">About</a>
+          <a href="#projects">Projects</a>
+          <a href="#skills">Skills</a>
+          <a href="#github">GitHub</a>
+          <a href="#contact">Contact</a>
+        </nav>
+        <div class="footer-social">
+          <a href="https://github.com/montaherul" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="footer-social-link">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+          </a>
+          <a href="https://linkedin.com/in/montaherul" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="footer-social-link">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+          <a href="mailto:montaherul360@gmail.com" aria-label="Email" class="footer-social-link">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copyright">
+          &copy; <span id="current-year">2026</span> Designed &amp; Developed by <strong>Montaherul Islam</strong>
+        </p>
+        <button class="back-to-top" aria-label="Back to top" data-back-to-top>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
+        </button>
+      </div>
     </div>
   </footer>
 
   <noscript>
-    <div class="noscript-banner">
-      This portfolio uses JavaScript for animation, GitHub sync, and project
-      filtering.
+    <div class="noscript-banner" role="alert">
+      <p>JavaScript is disabled. Some features may not work properly.</p>
     </div>
   </noscript>
 
   <script src="script.js"></script>
 </body>
-
 </html>
