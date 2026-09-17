@@ -1487,6 +1487,170 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ============================================================
+   EXPERIENCE / TIMELINE
+   ============================================================ */
+.experience-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+  align-items: start;
+}
+
+.experience-column-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 24px;
+}
+
+.experience-column-title svg {
+  color: var(--primary);
+  flex-shrink: 0;
+}
+
+.timeline {
+  position: relative;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 6px;
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  background: linear-gradient(var(--border), var(--primary-dim), var(--border));
+  border-radius: 2px;
+}
+
+.timeline-item {
+  position: relative;
+  padding-left: 36px;
+  margin-bottom: 24px;
+}
+
+.timeline-item:last-child {
+  margin-bottom: 0;
+}
+
+.timeline-marker {
+  position: absolute;
+  left: 0;
+  top: 26px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--gradient-primary);
+  border: 3px solid var(--bg);
+  box-shadow: 0 0 0 3px var(--primary-dim);
+  z-index: 1;
+}
+
+[data-theme="light"] .timeline-marker {
+  border-color: var(--surface);
+}
+
+.timeline-card {
+  padding: 22px 22px 18px;
+  border-radius: var(--radius);
+}
+
+.timeline-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.timeline-type {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--primary);
+  background: var(--primary-dim);
+  padding: 4px 12px;
+  border-radius: 100px;
+}
+
+.timeline-period {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--muted);
+  padding: 4px 12px;
+  border-radius: 100px;
+  border: 1px solid var(--border);
+}
+
+.timeline-period svg {
+  color: var(--primary);
+}
+
+.timeline-role {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.timeline-company {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--secondary);
+  margin-bottom: 10px;
+}
+
+.timeline-location {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--muted);
+  font-weight: 400;
+}
+
+.timeline-location svg {
+  flex-shrink: 0;
+}
+
+.timeline-desc {
+  font-size: 0.88rem;
+  color: var(--muted);
+  line-height: 1.65;
+  margin-bottom: 12px;
+}
+
+.timeline-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.timeline-tech .tech-chip {
+  font-size: 0.7rem;
+  background: var(--card);
+  border-color: var(--border);
+  color: var(--muted);
+}
+
+.timeline-tech .tech-chip:hover {
+  color: var(--primary);
+  border-color: var(--primary);
+  background: var(--primary-dim);
+}
+
+/* ============================================================
    GITHUB
    ============================================================ */
 .github-dashboard {
@@ -2111,6 +2275,10 @@ h1, h2, h3, h4, h5, h6 {
   }
 
   .contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .experience-grid {
     grid-template-columns: 1fr;
   }
 }

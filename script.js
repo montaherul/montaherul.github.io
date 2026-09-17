@@ -1,7 +1,7 @@
 /* ============================================================
    CONSTANTS
    ============================================================ */
-const GITHUB_USER = "montaherul";
+const GITHUB_USER = (typeof PORTFOLIO !== "undefined" && PORTFOLIO.profile && PORTFOLIO.profile.githubUser) ? PORTFOLIO.profile.githubUser : "montaherul";
 
 const REDUCED_MOTION = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const COARSE_POINTER = window.matchMedia("(pointer: coarse)").matches;
@@ -11,6 +11,41 @@ const BACKEND_LANGUAGES = new Set(["java", "python", "php", "ruby", "go", "rust"
 
 const FRONTEND_KEYWORDS = ["frontend", "front-end", "ui", "react", "vue", "angular", "html", "css"];
 const BACKEND_KEYWORDS = ["backend", "back-end", "api", "server", "database", "sql", "rest", "graphql", "microservice", "entity", "core", "asp"];
+
+/* ============================================================
+   ICON LIBRARY
+   ============================================================ */
+const ICON_PATHS = {
+  monitor: '<rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>',
+  backend: '<path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>',
+  database: '<ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>',
+  tools: '<polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>',
+  shield: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>',
+  ai: '<path d="M12 2a10 10 0 0 1 10 10c0 2.5-1 4.8-2.5 6.5"/><path d="M2 12a10 10 0 0 1 10-10"/><path d="M12 22a10 10 0 0 0 10-10"/><path d="M2 12a10 10 0 0 0 10 10"/><path d="M12 2v20"/><path d="M2 12h20"/>',
+  github: '<path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>',
+  linkedin: '<path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>',
+  mail: '<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>',
+  phone: '<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>',
+  briefcase: '<rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>',
+  graduation: '<path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/>',
+  calendar: '<rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>',
+  pin: '<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>',
+  external: '<path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>',
+  dots: '<circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/>',
+  arrow: '<line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>',
+  download: '<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>',
+};
+
+const FILL_ICONS = { github: true, linkedin: true };
+
+function iconSVG(name, size, className) {
+  const s = size || 24;
+  const fill = FILL_ICONS[name] ? "currentColor" : "none";
+  const stroke = FILL_ICONS[name] ? "none" : "currentColor";
+  const sw = FILL_ICONS[name] ? "0" : "2";
+  const cls = className ? ` class="${className}"` : "";
+  return `<svg${cls} width="${s}" height="${s}" viewBox="0 0 24 24" fill="${fill}" stroke="${stroke}" stroke-width="${sw}" stroke-linecap="round" stroke-linejoin="round">${ICON_PATHS[name] || ""}</svg>`;
+}
 
 /* ============================================================
    UTILITY
@@ -67,6 +102,276 @@ function mapRepoTags(repo) {
   getRepoCategories(repo).forEach(c => tags.push(c));
   if (repo.language) tags.push(normalizeFilterValue(repo.language));
   return tags.join(" ");
+}
+
+/* ============================================================
+   DYNAMIC RENDER - everything is drawn from PORTFOLIO (data.js)
+   ============================================================ */
+function renderMeta() {
+  if (typeof PORTFOLIO === "undefined" || !PORTFOLIO.meta) return;
+  const m = PORTFOLIO.meta;
+  document.title = m.title;
+  const desc = document.querySelector('meta[name="description"]');
+  if (desc) desc.setAttribute("content", m.description);
+  const kw = document.querySelector('meta[name="keywords"]');
+  if (kw) kw.setAttribute("content", m.keywords);
+}
+
+function renderNav() {
+  const nav = (PORTFOLIO && PORTFOLIO.nav) || [];
+  const menu = document.getElementById("nav-links");
+  if (menu) {
+    menu.innerHTML = nav.map(n => (
+      `<a href="#${n.id}" class="nav-link${n.id === "home" ? " active" : ""}" role="menuitem" data-nav>${n.label}</a>`
+    )).join("");
+  }
+  const foot = document.querySelector(".footer-nav");
+  if (foot) {
+    foot.innerHTML = nav.map(n => `<a href="#${n.id}">${n.label}</a>`).join("");
+  }
+}
+
+function renderProfile() {
+  if (typeof PORTFOLIO === "undefined" || !PORTFOLIO.profile) return;
+  const p = PORTFOLIO.profile;
+
+  const marks = document.querySelectorAll(".logo-mark, .footer-logo, .preloader-logo");
+  marks.forEach(el => { el.textContent = p.shortName; });
+
+  const logoName = document.querySelector(".logo-name");
+  if (logoName) logoName.textContent = p.name;
+  const logoTitle = document.querySelector(".logo-title");
+  if (logoTitle) logoTitle.textContent = p.title;
+
+  const badge = document.querySelector(".hero-badge-text");
+  if (badge) badge.textContent = p.heroBadge;
+
+  const headline = document.querySelector(".hero-headline");
+  if (headline) {
+    headline.innerHTML = `${p.headlinePrefix}<span class="gradient-text">${p.headlineHighlight}</span>${p.headlineSuffix}`;
+  }
+
+  const subtitle = document.querySelector(".hero-subtitle");
+  if (subtitle) subtitle.textContent = p.subtitle;
+
+  const avatar = document.querySelector(".avatar-img");
+  if (avatar) {
+    avatar.src = p.avatar;
+    avatar.alt = p.name;
+  }
+
+  const techTags = document.querySelector(".tech-tags");
+  if (techTags) {
+    techTags.innerHTML = p.techTags.map(t => `<span class="tech-tag">${t}</span>`).join("");
+  }
+
+  document.querySelectorAll("[data-resume]").forEach(a => {
+    a.href = p.resume;
+  });
+
+  const form = document.getElementById("contact-form");
+  if (form) form.action = "mailto:" + p.email;
+
+  const years = document.querySelector(".stat-static");
+  if (years) {
+    years.dataset.count = p.yearsLearning;
+    years.textContent = "0";
+  }
+}
+
+function renderSectionHeaders() {
+  if (typeof PORTFOLIO === "undefined" || !PORTFOLIO.sections) return;
+  Object.entries(PORTFOLIO.sections).forEach(([key, s]) => {
+    const header = document.querySelector(`[data-section-header="${key}"]`);
+    if (!header) return;
+    const eyebrow = header.querySelector(".section-eyebrow");
+    const title = header.querySelector(".section-title");
+    const desc = header.querySelector(".section-desc");
+    if (eyebrow) eyebrow.textContent = s.eyebrow;
+    if (title) title.textContent = s.title;
+    if (desc) desc.textContent = s.desc;
+  });
+}
+
+function renderAbout() {
+  if (typeof PORTFOLIO === "undefined" || !PORTFOLIO.about) return;
+  const about = PORTFOLIO.about;
+
+  const body = document.querySelector(".terminal-body");
+  if (body) {
+    let html = `<div class="terminal-line"><span class="prompt">$</span><span class="command">${about.terminalCommand}</span></div>`;
+    about.terminalLines.forEach(line => {
+      html += `<div class="terminal-line"><span class="output">▸ ${line}</span></div>`;
+    });
+    html += `<div class="terminal-line cursor-line"><span class="cursor-blink">▌</span></div>`;
+    body.innerHTML = html;
+  }
+
+  const cards = document.querySelector(".about-cards");
+  if (cards) {
+    cards.innerHTML = about.cards.map(c => (
+      `<div class="about-card glass tilt-target" data-tilt-strength="10">
+        <div class="card-icon-wrapper">${iconSVG(c.icon, 28)}</div>
+        <h3>${c.title}</h3>
+        <p>${c.text}</p>
+      </div>`
+    )).join("");
+  }
+}
+
+function renderTimeline(list, targetId) {
+  const el = document.getElementById(targetId);
+  if (!el) return;
+  el.innerHTML = list.map(item => (
+    `<div class="timeline-item" data-reveal>
+      <div class="timeline-marker"></div>
+      <div class="timeline-card glass">
+        <div class="timeline-top">
+          <span class="timeline-type">${item.type || "Entry"}</span>
+          <span class="timeline-period">${iconSVG("calendar", 14)}${item.period}</span>
+        </div>
+        <h3 class="timeline-role">${item.role || item.degree}</h3>
+        <p class="timeline-company">
+          ${item.company || item.school || ""}
+          ${item.location ? `<span class="timeline-location">${iconSVG("pin", 13)}${item.location}</span>` : ""}
+        </p>
+        ${item.description ? `<p class="timeline-desc">${item.description}</p>` : ""}
+        ${item.tech && item.tech.length
+          ? `<div class="timeline-tech">${item.tech.map(t => `<span class="tech-chip">${t}</span>`).join("")}</div>`
+          : ""}
+      </div>
+    </div>`
+  )).join("");
+}
+
+function renderExperience() {
+  if (typeof PORTFOLIO === "undefined") return;
+  renderTimeline(PORTFOLIO.experience || [], "timeline-experience");
+  renderTimeline(PORTFOLIO.education || [], "timeline-education");
+}
+
+function renderProjects() {
+  if (typeof PORTFOLIO === "undefined" || !PORTFOLIO.projects) return;
+  const grid = document.getElementById("project-grid");
+  if (!grid) return;
+
+  PORTFOLIO.projects.forEach((proj, i) => {
+    const article = document.createElement("article");
+    article.className = "project-card glass tilt-target";
+    article.dataset.tags = (proj.tags || []).join(" ");
+    article.dataset.tiltStrength = "8";
+    article.setAttribute("data-reveal", "");
+    if (i > 0) article.setAttribute("data-reveal-delay", String(i * 100));
+
+    article.innerHTML = `
+      <div class="project-image">
+        ${proj.image ? `<img src="${proj.image}" alt="${proj.title}" loading="lazy">` : ""}
+        <div class="project-overlay">
+          <div class="project-links">
+            <a href="${proj.links && proj.links.demo ? proj.links.demo : "#"}" class="project-link-btn" aria-label="View Live Demo">
+              ${iconSVG("external", 18)}
+            </a>
+            <a href="${proj.links && proj.links.github ? proj.links.github : "#"}" class="project-link-btn" aria-label="View GitHub Repository">
+              ${iconSVG("github", 18)}
+            </a>
+            <a href="#" class="project-link-btn" aria-label="View Details">
+              ${iconSVG("dots", 18)}
+            </a>
+          </div>
+        </div>
+        <div class="project-tech">
+          ${proj.tech.map(t => `<span class="tech-chip">${t}</span>`).join("")}
+        </div>
+      </div>
+      <div class="project-info">
+        <div class="project-eyebrow">
+          <span class="project-type">${proj.type || "Project"}</span>
+          <span class="project-category">${proj.category || ""}</span>
+        </div>
+        <h3 class="project-title">${proj.title}</h3>
+        <p class="project-desc">${proj.description}</p>
+        <div class="project-footer">
+          <div class="project-meta">
+            <span class="project-lang">
+              <span class="lang-dot" style="background: ${proj.langColor || "#8B8B8B"}"></span>
+              ${proj.language || "Project"}
+            </span>
+          </div>
+          <a href="${proj.links && proj.links.github ? proj.links.github : "#"}" class="project-link">
+            <span>View Project</span>
+            ${iconSVG("arrow", 16)}
+          </a>
+        </div>
+      </div>
+    `;
+    grid.appendChild(article);
+  });
+}
+
+function renderSkills() {
+  if (typeof PORTFOLIO === "undefined" || !PORTFOLIO.skills) return;
+  const grid = document.querySelector(".skills-grid");
+  if (!grid) return;
+
+  grid.innerHTML = PORTFOLIO.skills.map(group => (
+    `<div class="skill-group glass">
+      <div class="skill-group-header">
+        ${iconSVG(group.icon, 20)}
+        <h3>${group.group}</h3>
+      </div>
+      <div class="skill-items">
+        ${group.items.map(s => `
+          <div class="skill-item" data-skill="${s.name}" data-width="${s.level}">
+            <div class="skill-info">
+              <span class="skill-name">${s.name}</span>
+              <span class="skill-value">${s.level}%</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-progress" data-width="${s.level}" style="width:0%"></div>
+            </div>
+          </div>`).join("")}
+      </div>
+    </div>`
+  )).join("");
+}
+
+function renderContact() {
+  if (typeof PORTFOLIO === "undefined" || !PORTFOLIO.profile || !PORTFOLIO.profile.socials) return;
+  const wrap = document.querySelector(".contact-socials");
+  if (!wrap) return;
+
+  wrap.innerHTML = PORTFOLIO.profile.socials.map(s => {
+    const external = !s.url.startsWith("mailto") && !s.url.startsWith("tel");
+    return (
+      `<a href="${s.url}"${external ? ' target="_blank" rel="noopener noreferrer"' : ""} class="social-card glass tilt-target" data-tilt-strength="8" aria-label="${s.name}">
+        <div class="social-icon ${s.icon}-icon">${iconSVG(s.icon, 24)}</div>
+        <div class="social-info">
+          <span class="social-name">${s.name}</span>
+          <span class="social-handle">${s.handle}</span>
+        </div>
+        ${iconSVG("arrow", 16, "social-arrow")}
+      </a>`
+    );
+  }).join("");
+}
+
+function renderFooter() {
+  if (typeof PORTFOLIO === "undefined" || !PORTFOLIO.footer) return;
+  const tag = document.querySelector(".footer-tagline");
+  if (tag) tag.textContent = PORTFOLIO.footer.tagline;
+}
+
+function renderPortfolio() {
+  renderMeta();
+  renderNav();
+  renderProfile();
+  renderSectionHeaders();
+  renderAbout();
+  renderExperience();
+  renderProjects();
+  renderSkills();
+  renderContact();
+  renderFooter();
 }
 
 /* ============================================================
@@ -255,14 +560,6 @@ function initBackToTop() {
 }
 
 /* ============================================================
-   HERO - TYPING EFFECT
-   ============================================================ */
-function initTypingEffect() {
-  // Using the static headline instead of typing effect
-  // The headline is already in the HTML
-}
-
-/* ============================================================
    HERO - COUNT UP
    ============================================================ */
 function initCountUp() {
@@ -317,6 +614,7 @@ function observeCountUp(selector) {
       if (entry.isIntersecting && !animated) {
         animated = true;
         els.forEach(el => {
+          if (!el.hasAttribute("data-count")) return;
           const target = parseInt(el.dataset.count) || 0;
           animateCount(el, target);
         });
@@ -623,18 +921,18 @@ function loadGitHubProjects() {
                  loading="lazy"
                  onerror="this.src='${imgSlug}.jpeg';this.onerror=function(){this.src='${imgSlug}.png';this.onerror=function(){this.src='${imgSlug}.webp';this.onerror=function(){this.src='${onlineSrc}';this.onerror=function(){this.style.display='none';this.parentElement.querySelector('.project-img-fallback').style.display='flex'}}}}">
             <div class="project-img-fallback" style="display:none;background:linear-gradient(135deg,var(--surface),var(--bg-secondary));align-items:center;justify-content:center;position:absolute;inset:0;">
-              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--border)" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+              ${iconSVG("database", 48)}
             </div>
             <div class="project-overlay">
               <div class="project-links">
                 ${repo.homepage ? `<a href="${repo.homepage}" target="_blank" rel="noopener noreferrer" class="project-link-btn" aria-label="View Live Demo">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                  ${iconSVG("external", 18)}
                 </a>` : ''}
                 <a href="${repo.html_url}" target="_blank" rel="noopener noreferrer" class="project-link-btn" aria-label="View GitHub Repository">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                  ${iconSVG("github", 18)}
                 </a>
                 <button class="project-link-btn" aria-label="View Details">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
+                  ${iconSVG("dots", 18)}
                 </button>
               </div>
             </div>
@@ -659,7 +957,7 @@ function loadGitHubProjects() {
               </div>
               <a href="${repo.html_url}" target="_blank" rel="noopener noreferrer" class="project-link">
                 <span>View on GitHub</span>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                ${iconSVG("arrow", 16)}
               </a>
             </div>
           </div>
@@ -719,6 +1017,7 @@ function loadGitHubProjects() {
       fallback.textContent = "Live GitHub sync unavailable. Please visit my GitHub profile directly.";
       grid.appendChild(fallback);
       initCountUp();
+      observeCountUp(".github-stat-number");
     });
 }
 
@@ -761,6 +1060,7 @@ function renderLanguageList(languages) {
 
 function renderLanguageFilters(languages) {
   const filterBar = document.querySelector(".filter-bar");
+  if (!filterBar) return;
   const indicator = filterBar.querySelector(".filter-indicator");
   languages.slice(0, 6).forEach(([lang]) => {
     const chip = document.createElement("button");
@@ -851,12 +1151,16 @@ function initFooterYear() {
    FLOATING ACTION BUTTON
    ============================================================ */
 function initFAB() {
+  const resume = (typeof PORTFOLIO !== "undefined" && PORTFOLIO.profile)
+    ? PORTFOLIO.profile.resume
+    : "Montaherul Islam.pdf";
+
   const fab = document.createElement("a");
-  fab.href = "/Montaherul Islam.pdf";
+  fab.href = resume;
   fab.className = "fab";
   fab.setAttribute("aria-label", "Download Resume");
   fab.setAttribute("download", "");
-  fab.innerHTML = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>`;
+  fab.innerHTML = iconSVG("download", 24);
   document.body.appendChild(fab);
 
   window.addEventListener("scroll", () => {
@@ -868,6 +1172,9 @@ function initFAB() {
    INIT
    ============================================================ */
 onReady(() => {
+  // Render everything from PORTFOLIO (data.js) first
+  renderPortfolio();
+
   initPreloader();
   initTheme();
   if (!COARSE_POINTER) initCursor();
