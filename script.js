@@ -1,7 +1,9 @@
 /* ============================================================
    CONSTANTS
    ============================================================ */
-const GITHUB_USER = (typeof PORTFOLIO !== "undefined" && PORTFOLIO.profile && PORTFOLIO.profile.githubUser) ? PORTFOLIO.profile.githubUser : "montaherul";
+let GITHUB_USER = (typeof PORTFOLIO !== "undefined" && PORTFOLIO.profile && PORTFOLIO.profile.githubUser) ? PORTFOLIO.profile.githubUser : "montaherul";
+
+const OVERRIDE_KEY = "mb_portfolio_override";
 
 const REDUCED_MOTION = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const COARSE_POINTER = window.matchMedia("(pointer: coarse)").matches;
@@ -102,6 +104,46 @@ function mapRepoTags(repo) {
   getRepoCategories(repo).forEach(c => tags.push(c));
   if (repo.language) tags.push(normalizeFilterValue(repo.language));
   return tags.join(" ");
+}
+
+function getPortfolioOverrides() {
+  try {
+    const raw = localStorage.getItem(OVERRIDE_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw);
+    if (parsed && parsed.v === 1 && parsed.data && typeof parsed.data === "object") {
+      return parsed.data;
+    }
+  } catch (e) { /* ignore invalid stored data */ }
+  return null;
+}
+
+function deepMergeObject(base, override) {
+  const copy = Array.isArray(base) ? base.slice() : Object.assign({}, base);
+  if (override && typeof override === "object") {
+    Object.keys(override).forEach(key => {
+      const o = override[key];
+      if (o && typeof o === "object" && !Array.isArray(o) &&
+          copy[key] && typeof copy[key] === "object" && !Array.isArray(copy[key])) {
+        copy[key] = deepMergeObject(copy[key], o);
+      } else {
+        copy[key] = o;
+      }
+    });
+  }
+  return copy;
+}
+
+/* Edits saved via the /edit editor are merged over the defaults from data.js. */
+function applyPortfolioOverrides() {
+  const overrides = getPortfolioOverrides();
+  if (!overrides) return;
+  const merged = deepMergeObject(PORTFOLIO, overrides);
+  Object.keys(PORTFOLIO).forEach(key => { delete PORTFOLIO[key]; });
+  Object.assign(PORTFOLIO, merged);
+  if (PORTFOLIO.profile && PORTFOLIO.profile.githubUser) {
+    GITHUB_USER = PORTFOLIO.profile.githubUser;
+  }
 }
 
 /* ============================================================
@@ -361,7 +403,71 @@ function renderFooter() {
   if (tag) tag.textContent = PORTFOLIO.footer.tagline;
 }
 
+/* Look up an editable label from PORTFOLIO.ui, falling back to a default. */
+function uiText(path, fallback) {
+  const parts = path.split(".");
+  let cur = (typeof PORTFOLIO !== "undefined" && PORTFOLIO.ui) ? PORTFOLIO.ui : null;
+  for (let i = 0; i < parts.length; i++) {
+    if (cur == null || typeof cur !== "object") return fallback;
+    cur = cur[parts[i]];
+  }
+  return (cur == null || cur === "") ? fallback : cur;
+}
+
+/* Every visible label that is drawn from PORTFOLIO.ui. */
+function renderUI() {
+  if (typeof PORTFOLIO === "undefined" || !PORTFOLIO.ui) return;
+  const ui = PORTFOLIO.ui;
+
+  const apply = (attr, val) => {
+    if (val == null || val === "") return;
+    document.querySelectorAll(`[data-ui="${attr}"]`).forEach(el => { el.textContent = val; });
+  };
+
+  if (ui.hero) {
+    apply("hero.ctaPrimary", ui.hero.ctaPrimary);
+    apply("hero.ctaSecondary", ui.hero.ctaSecondary);
+    apply("hero.ctaTertiary", ui.hero.ctaTertiary);
+    if (ui.hero.stats && ui.hero.stats.length) {
+      ui.hero.stats.forEach((label, i) => apply("hero.stats." + i, label));
+    }
+  }
+  if (ui.navResume) apply("navResume", ui.navResume);
+  if (ui.columnExperience) apply("columnExperience", ui.columnExperience);
+  if (ui.columnEducation) apply("columnEducation", ui.columnEducation);
+  if (ui.terminalTitle) apply("terminalTitle", ui.terminalTitle);
+  if (ui.filters && ui.filters.length) {
+    ui.filters.forEach((label, i) => apply("filters." + i, label));
+  }
+  if (ui.github) {
+    apply("github.stat1", ui.github.statStars);
+    apply("github.stat2", ui.github.statRepos);
+    apply("github.stat3", ui.github.statTopLang);
+    apply("github.stat4", ui.github.statForks);
+    apply("github.languagesTitle", ui.github.languagesTitle);
+    apply("github.contributionsTitle", ui.github.contributionsTitle);
+    const graph = document.querySelector('[data-ui="github.graph"]');
+    if (graph && PORTFOLIO.profile && PORTFOLIO.profile.githubUser) {
+      graph.src = `https://ghchart.rshah.org/00E5FF/${PORTFOLIO.profile.githubUser}`;
+    }
+  }
+  if (ui.contact) {
+    apply("contact.name", ui.contact.name);
+    apply("contact.email", ui.contact.email);
+    apply("contact.subject", ui.contact.subject);
+    apply("contact.message", ui.contact.message);
+    apply("contact.send", ui.contact.send);
+    apply("contact.availability", ui.contact.availability);
+    apply("contact.availabilityText", ui.contact.availabilityText);
+  }
+  if (ui.footer) {
+    apply("footer.copyright", ui.footer.copyright);
+    apply("footer.name", (PORTFOLIO.profile && PORTFOLIO.profile.name) || "");
+  }
+}
+
 function renderPortfolio() {
+  applyPortfolioOverrides();
   renderMeta();
   renderNav();
   renderProfile();
@@ -372,6 +478,7 @@ function renderPortfolio() {
   renderSkills();
   renderContact();
   renderFooter();
+  renderUI();
 }
 
 /* ============================================================
@@ -946,7 +1053,7 @@ function loadGitHubProjects() {
               <span class="project-category">${typeLabel}</span>
             </div>
             <h3 class="project-title">${repo.name.replace(/[-_]/g, " ")}</h3>
-            <p class="project-desc">${repo.description || "A project on GitHub. Click to explore the repository."}</p>
+            <p class="project-desc">${repo.description || uiText("github.repoFallbackDesc", "A project on GitHub. Click to explore the repository.")}</p>
             <div class="project-footer">
               <div class="project-meta">
                 <span class="project-lang">
@@ -956,7 +1063,7 @@ function loadGitHubProjects() {
                 ${repo.stargazers_count > 0 ? `<span style="font-size:0.8rem;color:var(--muted);margin-left:8px;">★ ${repo.stargazers_count}</span>` : ''}
               </div>
               <a href="${repo.html_url}" target="_blank" rel="noopener noreferrer" class="project-link">
-                <span>View on GitHub</span>
+                <span>${uiText("github.viewOnGitHub", "View on GitHub")}</span>
                 ${iconSVG("arrow", 16)}
               </a>
             </div>
@@ -1011,10 +1118,10 @@ function loadGitHubProjects() {
     })
     .catch(err => {
       console.warn("GitHub API error:", err);
-      status.textContent = "GitHub sync currently unavailable. Showing featured projects.";
+      status.textContent = uiText("github.syncFallback", "GitHub sync currently unavailable. Showing featured projects.");
       const fallback = document.createElement("p");
       fallback.style.cssText = "text-align:center;color:var(--muted);padding:40px;";
-      fallback.textContent = "Live GitHub sync unavailable. Please visit my GitHub profile directly.";
+      fallback.textContent = uiText("github.visitProfile", "Live GitHub sync unavailable. Please visit my GitHub profile directly.");
       grid.appendChild(fallback);
       initCountUp();
       observeCountUp(".github-stat-number");
@@ -1104,11 +1211,11 @@ function initContactForm() {
 
       if (!input.value.trim()) {
         input.classList.add("is-error");
-        if (status) status.textContent = "This field is required";
+        if (status) status.textContent = uiText("contact.errorRequired", "This field is required");
         valid = false;
       } else if (input.type === "email" && !isValidEmail(input.value)) {
         input.classList.add("is-error");
-        if (status) status.textContent = "Please enter a valid email";
+        if (status) status.textContent = uiText("contact.errorEmail", "Please enter a valid email");
         valid = false;
       } else {
         input.classList.add("is-success");

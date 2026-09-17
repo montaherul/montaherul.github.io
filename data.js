@@ -221,4 +221,53 @@ const PORTFOLIO = {
   footer: {
     tagline: "Full Stack Web Developer",
   },
+
+  /* ---------------- UI Text / Labels ---------------- */
+  /* Every visible label on the page is here, so nothing is hardcoded in the
+     markup. Edit these and the whole site updates. */
+  ui: {
+    navResume: "Resume",
+    hero: {
+      ctaPrimary: "View Projects",
+      ctaSecondary: "Download Resume",
+      ctaTertiary: "Contact Me",
+      stats: [
+        "Repositories",
+        "Technologies",
+        "GitHub Stars",
+        "Projects",
+        "Years Learning",
+      ],
+    },
+    columnExperience: "Experience",
+    columnEducation: "Education",
+    filters: ["All", "Featured", "GitHub", "Frontend", "Backend"],
+    terminalTitle: "profile — summary",
+    github: {
+      statStars: "Stars",
+      statRepos: "Active Repos",
+      statTopLang: "Top Language",
+      statForks: "Forks",
+      languagesTitle: "Languages",
+      contributionsTitle: "Contributions",
+      viewOnGitHub: "View on GitHub",
+      repoFallbackDesc: "A project on GitHub. Click to explore the repository.",
+      syncFallback: "GitHub sync currently unavailable. Showing featured projects.",
+      visitProfile: "Live GitHub sync unavailable. Please visit my GitHub profile directly.",
+    },
+    contact: {
+      name: "Your Name",
+      email: "Your Email",
+      subject: "Subject",
+      message: "Your Message",
+      send: "Send Message",
+      availability: "Available for opportunities",
+      availabilityText: "Based in Chattogram, Bangladesh. Open to remote work, freelance projects, and full-time positions.",
+      errorRequired: "This field is required",
+      errorEmail: "Please enter a valid email",
+    },
+    footer: {
+      copyright: "Designed & Developed by",
+    },
+  },
 };

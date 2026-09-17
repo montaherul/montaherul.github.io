@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio Editor — Sign in</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="editor.css">
+</head>
+<body>
+
+  <!-- LOGIN SCREEN -->
+  <div id="login-screen" class="screen login-screen">
+    <div class="login-card">
+      <div class="login-logo">MI</div>
+      <h1>Portfolio Editor</h1>
+      <p class="login-hint">Enter the password to manage your portfolio content.</p>
+      <form id="login-form" autocomplete="off">
+        <label class="field">
+          <span>Password</span>
+          <input type="password" id="login-password" placeholder="••••••••" autocomplete="current-password" required>
+        </label>
+        <button type="submit" class="btn btn-primary" id="btn-unlock">Unlock Editor</button>
+      </form>
+      <p id="login-error" class="login-error" hidden>Incorrect password. Please try again.</p>
+      <p class="login-note">First time here? Use the initial password sent to you, then change it after logging in.</p>
+    </div>
+  </div>
+
+  <!-- EDITOR SCREEN -->
+  <div id="editor-screen" class="screen editor-screen" hidden>
+    <header class="topbar">
+      <div>
+        <h1>Portfolio Editor</h1>
+        <p class="topbar-sub">Edits apply instantly on this browser. Download the updated <code>data.js</code> and push it to deploy for everyone.</p>
+      </div>
+      <div class="topbar-actions">
+        <button class="btn btn-danger-ghost" id="btn-reset" title="Clear local edits and restore defaults">Reset</button>
+        <button class="btn btn-ghost" id="btn-copy" title="Copy updated data.js to clipboard">Copy JSON</button>
+        <button class="btn btn-secondary" id="btn-export" title="Download updated data.js to replace in the repo">Download data.js</button>
+        <button class="btn btn-primary" id="btn-save" title="Save changes for this browser">Save</button>
+        <button class="btn btn-ghost" id="btn-logout">Log out</button>
+      </div>
+    </header>
+
+    <div class="pw-card">
+      <input type="password" id="new-password" class="pw-input" placeholder="New password (leave empty to keep current)" autocomplete="new-password">
+      <button class="btn btn-ghost" id="btn-password">Update password</button>
+    </div>
+
+    <main id="editor" class="editor"></main>
+  </div>
+
+  <div id="toast" class="toast" hidden></div>
+  <textarea id="copy-area" hidden></textarea>
+
+  <script src="../data.js"></script>
+  <script src="editor.js"></script>
+</body>
+</html>
