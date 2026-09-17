@@ -5,6 +5,10 @@ let GITHUB_USER = (typeof PORTFOLIO !== "undefined" && PORTFOLIO.profile && PORT
 
 const OVERRIDE_KEY = "mb_portfolio_override";
 
+/* Google Apps Script Web App URL (deployed as "Web app", access: Anyone).
+   Replace with your real deployment URL, e.g. https://script.google.com/macros/s/AKfycb.../exec */
+const CONTACT_ENDPOINT = "https://script.google.com/macros/s/AKfycbyfavXcWNR2VYbyUW6tOf_l-hUmQsTNuzAS54vjRpRBejS9hhuQN1kde3zRxpz1916g/exec";
+
 const REDUCED_MOTION = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const COARSE_POINTER = window.matchMedia("(pointer: coarse)").matches;
 
@@ -1203,6 +1207,7 @@ function initContactForm() {
 
   // Validation
   form.addEventListener("submit", (e) => {
+    e.preventDefault();
     let valid = true;
 
     form.querySelectorAll(".form-input").forEach(input => {
@@ -1223,23 +1228,64 @@ function initContactForm() {
       }
     });
 
-    if (!valid) {
-      e.preventDefault();
-      return;
+    if (!valid) return;
+
+    // Show loading state
+    const btn = form.querySelector(".submit-btn");
+    const btnText = btn.querySelector(".btn-text");
+    const feedback = document.getElementById("form-feedback");
+    const originalText = btnText.textContent;
+
+    btn.classList.add("is-loading");
+    btn.disabled = true;
+    if (feedback) {
+      feedback.className = "form-feedback";
+      feedback.textContent = "";
     }
 
-    // Show loading state (for mailto, we can't prevent default entirely)
-    const btn = form.querySelector(".submit-btn");
-    btn.classList.add("is-loading");
+    const payload = {
+      name: form.name.value.trim(),
+      email: form.email.value.trim(),
+      subject: form.subject.value.trim(),
+      message: form.message.value.trim(),
+      page: window.location.href,
+    };
 
-    // Since this is a mailto form, we let the default action proceed
-    // The success state is shown optimistically
-    setTimeout(() => {
-      btn.classList.remove("is-loading");
-      btn.classList.add("is-sent");
-      setTimeout(() => btn.classList.remove("is-sent"), 3000);
-    }, 1000);
+    // POST to Google Apps Script -> appends to Google Sheet + emails the owner
+    fetch(CONTACT_ENDPOINT, {
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify(payload),
+    })
+      .then(() => {
+        showContactFeedback(feedback, uiText("contact.success", "Your message has been sent. I'll get back to you soon!"), "success");
+        btn.classList.remove("is-loading");
+        btn.classList.add("is-sent");
+        btn.disabled = false;
+        btnText.textContent = uiText("contact.sent", "Message Sent!");
+        form.reset();
+        form.querySelectorAll(".form-input").forEach(input => {
+          input.classList.remove("is-success", "has-value");
+        });
+        setTimeout(() => {
+          btn.classList.remove("is-sent");
+          btnText.textContent = originalText;
+        }, 4000);
+      })
+      .catch(() => {
+        showContactFeedback(feedback, uiText("contact.error", "Something went wrong. Please try again or email me directly."), "error");
+        btn.classList.remove("is-loading");
+        btn.disabled = false;
+        btnText.textContent = originalText;
+      });
   });
+}
+
+function showContactFeedback(el, message, type) {
+  if (!el) return;
+  el.textContent = message;
+  el.className = "form-feedback form-feedback--" + type;
 }
 
 function isValidEmail(email) {

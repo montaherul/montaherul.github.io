@@ -26,7 +26,7 @@ const PORTFOLIO = {
     avatar: "me.jpeg",
     techTags: ["Frontend", "Backend", "Database & Security", "AI"],
     location: "Chattogram, Bangladesh",
-    email: "montaherul360@gmail.com",
+    email: "islammontaherul@gmail.com",
     phone: "tel:+880123456789",
     resume: "Montaherul Islam.pdf",
     githubUser: "montaherul",
@@ -34,7 +34,7 @@ const PORTFOLIO = {
     socials: [
       { name: "GitHub", handle: "@montaherul", url: "https://github.com/montaherul", icon: "github" },
       { name: "LinkedIn", handle: "Connect with me", url: "https://linkedin.com/in/montaherul", icon: "linkedin" },
-      { name: "Email", handle: "montaherul360@gmail.com", url: "mailto:montaherul360@gmail.com", icon: "mail" },
+      { name: "Email", handle: "islammontaherul@gmail.com", url: "mailto:islammontaherul@gmail.com", icon: "mail" },
       { name: "Phone", handle: "Chattogram, Bangladesh", url: "tel:+880123456789", icon: "phone" },
     ],
   },
@@ -265,6 +265,10 @@ const PORTFOLIO = {
       availabilityText: "Based in Chattogram, Bangladesh. Open to remote work, freelance projects, and full-time positions.",
       errorRequired: "This field is required",
       errorEmail: "Please enter a valid email",
+      success: "Your message has been sent. I'll get back to you soon!",
+      sent: "Message Sent!",
+      error: "Something went wrong. Please try again or email me directly.",
+      sending: "Sending...",
     },
     footer: {
       copyright: "Designed & Developed by",

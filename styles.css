@@ -1830,6 +1830,28 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 0 0 0 3px var(--primary-dim);
 }
 
+/* Neutralize browser autofill background/highlight and keep labels floated */
+.form-input:-webkit-autofill,
+.form-input:-webkit-autofill:hover,
+.form-input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 30px var(--surface) inset;
+  -webkit-text-fill-color: var(--text);
+  box-shadow: 0 0 0 30px var(--surface) inset;
+  transition: background-color 9999s ease-in-out 0s;
+}
+
+.form-input:-webkit-autofill ~ .form-label {
+  top: 0;
+  transform: translateY(-50%);
+  font-size: 0.75rem;
+  color: var(--primary);
+  background: var(--surface);
+}
+
+.form-input:-webkit-autofill ~ .input-highlight {
+  width: 80%;
+}
+
 .form-input:focus ~ .form-label,
 .form-input.has-value ~ .form-label {
   top: 0;
@@ -1875,6 +1897,29 @@ h1, h2, h3, h4, h5, h6 {
   min-height: 0;
   color: var(--danger);
   transition: all var(--transition);
+}
+
+.form-feedback {
+  margin-top: 14px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  display: none;
+}
+
+.form-feedback--success {
+  display: block;
+  background: rgba(var(--success-rgb, 46, 213, 115), 0.12);
+  color: var(--success);
+  border: 1px solid rgba(var(--success-rgb, 46, 213, 115), 0.35);
+}
+
+.form-feedback--error {
+  display: block;
+  background: rgba(var(--danger-rgb, 255, 71, 87), 0.12);
+  color: var(--danger);
+  border: 1px solid rgba(var(--danger-rgb, 255, 71, 87), 0.35);
 }
 
 .submit-btn {
