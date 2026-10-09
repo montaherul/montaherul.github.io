@@ -803,6 +803,20 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--text);
 }
 
+.hero-name {
+  display: block;
+}
+
+.hero-tagline {
+  display: block;
+  font-size: 0.5em;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.35;
+  color: var(--muted);
+  margin-top: 16px;
+}
+
 .gradient-text {
   background: var(--gradient-primary);
   -webkit-background-clip: text;

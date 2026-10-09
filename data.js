@@ -8,9 +8,9 @@
 const PORTFOLIO = {
   /* ---------------- Meta / SEO ---------------- */
   meta: {
-    title: "Montaherul Islam — Full Stack Web Developer",
-    description: "Full Stack Web Developer specializing in enterprise web applications, scalable backend systems, cybersecurity principles, and AI-powered solutions. Based in Chattogram, Bangladesh.",
-    keywords: "Full Stack Developer, Web Developer, ASP.NET Core, C#, SQL Server, JavaScript, React, Node.js, Portfolio, Montaherul Islam, Unifera IT Internship",
+    title: "Montaherul Islam | Full Stack Web Developer & ASP.NET Core .NET Engineer",
+    description: "Portfolio of Montaherul Islam, a Full Stack Web Developer and CSE student at IIUC, Chattogram. Specialized in ASP.NET Core, C#, SQL Server, and the MERN stack.",
+    keywords: "Montaherul Islam, Montaherul Islam IIUC, .NET Developer Bangladesh, Software Engineer Chattogram, ASP.NET Core developer, Full Stack Developer, C#, SQL Server, JavaScript, React, Node.js",
   },
 
   /* ---------------- Profile ---------------- */
@@ -22,7 +22,7 @@ const PORTFOLIO = {
     headlinePrefix: "Building modern digital experiences with ",
     headlineHighlight: "clean code, security, and AI",
     headlineSuffix: ".",
-    subtitle: "Full Stack Web Developer specializing in enterprise web applications, scalable backend systems, cybersecurity principles, and AI-powered solutions.",
+    subtitle: "Full Stack Web Developer based in Chattogram, Bangladesh, specializing in ASP.NET Core, C#, SQL Server, and modern JavaScript. I build enterprise-grade web applications with clean architecture, SOLID principles, and a security-first mindset.",
     avatar: "me.jpeg",
     techTags: ["Frontend", "Backend", "Database & Security", "AI"],
     location: "Chattogram, Bangladesh",

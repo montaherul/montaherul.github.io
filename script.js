@@ -192,9 +192,12 @@ function renderProfile() {
   const badge = document.querySelector(".hero-badge-text");
   if (badge) badge.textContent = p.heroBadge;
 
-  const headline = document.querySelector(".hero-headline");
-  if (headline) {
-    headline.innerHTML = `${p.headlinePrefix}<span class="gradient-text">${p.headlineHighlight}</span>${p.headlineSuffix}`;
+  const heroName = document.querySelector(".hero-name");
+  if (heroName) heroName.textContent = p.name;
+
+  const heroTagline = document.querySelector(".hero-tagline");
+  if (heroTagline) {
+    heroTagline.innerHTML = `${p.headlinePrefix}<span class="gradient-text">${p.headlineHighlight}</span>${p.headlineSuffix}`;
   }
 
   const subtitle = document.querySelector(".hero-subtitle");
@@ -300,6 +303,8 @@ function renderProjects() {
   if (typeof PORTFOLIO === "undefined" || !PORTFOLIO.projects) return;
   const grid = document.getElementById("project-grid");
   if (!grid) return;
+
+  grid.innerHTML = "";
 
   PORTFOLIO.projects.forEach((proj, i) => {
     const article = document.createElement("article");
